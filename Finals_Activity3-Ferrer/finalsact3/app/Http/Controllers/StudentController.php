@@ -78,19 +78,20 @@ class StudentController extends Controller
 
     public function update(Request $request, Student $student)
     {
-        $request->validate([
+        $validated = $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:students',
-            'address' => 'required',
-            'studentID' => 'required|string|unique:students',
-            'course' => 'required',
-            'yearlevel' => 'required',
+            'email' => 'required|email|max:255',
+            'address' => 'nullable|string',
+            'studentID' => 'required|string|max:255',
+            'course' => 'required|string|max:255',
+            'yearlevel' => 'required|string|max:255',
         ]);
 
-        $student->update($request->all());
+        $student->update($validated);
 
-        return redirect()->route('students.index')->with('success', 'Student updated.');
+        // Redirect to the dashboard or students index
+        return redirect()->route('students.index')->with('success', 'Student updated successfully');
     }
 
     public function destroy(Student $student)
