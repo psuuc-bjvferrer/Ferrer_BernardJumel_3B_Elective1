@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="mb-4">
+    <a href="{{ route('dashboard') }}" class="inline-block bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">
+        ← Go Back to Dashboard
+    </a>
+</div>
+
 <div class="bg-white p-6 rounded-lg shadow">
     <h2 class="text-xl font-bold mb-4">All Assets</h2>
     <div class="overflow-x-auto">

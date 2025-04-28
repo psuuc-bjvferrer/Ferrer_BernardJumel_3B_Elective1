@@ -66,8 +66,9 @@ class AssetController extends Controller
     $totalAssets = Asset::count();
     $inUse = Asset::where('status', 'in_use')->count();
     $underMaintenance = Asset::where('status', 'under_maintenance')->count();
-    $recentAssets = Asset::orderBy('serial_number', 'asc')->latest()->take(5)->get(); 
-    
+
+    $recentAssets = Asset::orderBy('created_at', 'desc')->take(5)->get();
+
     return view('dashboard', compact('totalAssets', 'inUse', 'underMaintenance', 'recentAssets'));
 }
 
